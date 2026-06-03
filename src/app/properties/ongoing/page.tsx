@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Building2, MapPin, BedDouble, ChevronRight, ArrowRight, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -52,22 +52,53 @@ const ongoingProjects = [
 export default function OngoingProjectsPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative py-32 bg-gradient-to-br from-[var(--color-dark)] via-[var(--color-dark-light)] to-[var(--color-dark-lighter)] overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
+      {/* ── HERO BANNER MODIFIED TO TOTAL FULL SCREEN 100vh ── */}
+      <section className="relative h-screen w-full bg-zinc-950 overflow-hidden flex items-center justify-center">
+        
+        {/* OPTIMIZED HIGH-OPACITY IMAGE BLOCK FOR CRITICAL CLARITY */}
+        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-80 select-none">
+          <Image
+            src="/images/ongoing.png" // Premium corporate construction layout
+            alt="WorldWide Prominent Properties Portfolio Backdrop"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+
+        {/* Ultra-Light Gradient Mask for flawless text typography contrast */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-zinc-950/90 via-zinc-950/20 to-black/30 pointer-events-none" />
+
+        <div className="absolute inset-0 overflow-hidden z-10 pointer-events-none">
           <motion.div animate={{ rotate: 360 }} transition={{ duration: 60, repeat: Infinity, ease: "linear" }} className="absolute -top-32 -right-32 w-96 h-96 rounded-full border border-[var(--color-gold)]/10" />
         </div>
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-          <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="inline-block px-4 py-1.5 glass rounded-full text-[var(--color-gold)] text-sm font-semibold mb-6 tracking-wider">✦ PROPERTIES</motion.span>
-          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-4xl md:text-5xl lg:text-6xl font-bold text-white font-[family-name:var(--font-playfair)] mb-4">
+
+        {/* Content Box with Strong Shadows - Symmetrical Center Over 100vh Viewport */}
+        <div className="max-w-7xl mx-auto px-6 relative z-20 text-center mt-12">
+          <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="inline-block px-4 py-1.5 glass rounded-full text-[var(--color-gold)] text-sm font-semibold mb-6 tracking-wider shadow-lg">✦ PROPERTIES</motion.span>
+          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-5xl md:text-6xl lg:text-7xl font-bold text-white font-[family-name:var(--font-playfair)] tracking-tight mb-4 drop-shadow-[0_4px_12px_rgba(0,0,0,0.85)]">
             Ongoing <span className="gradient-text">Projects</span>
           </motion.h1>
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="text-gray-400 max-w-2xl mx-auto text-lg">Explore our current projects under development</motion.p>
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="text-white max-w-2xl mx-auto text-base md:text-xl font-bold tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,1)]">
+            Explore our current projects under development
+          </motion.p>
+        </div>
+
+        {/* Infinite Bounce Downward Indicator Layer */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 opacity-60">
+          <span className="text-[10px] tracking-[0.25em] text-zinc-400 uppercase font-black">Scroll Down</span>
+          <div className="w-5 h-8 border-2 border-zinc-500 rounded-full flex justify-center p-1">
+            <motion.div 
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              className="w-1.5 h-1.5 bg-[var(--color-gold)] rounded-full"
+            />
+          </div>
         </div>
       </section>
 
       {/* Projects List */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white relative z-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="space-y-16">
             {ongoingProjects.map((project, i) => (
@@ -80,7 +111,7 @@ export default function OngoingProjectsPage() {
                         src={project.image}
                         alt={project.name}
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                        className="object-cover"
                         sizes="(max-width: 1024px) 100vw, 40vw"
                       />
                       <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent" />
@@ -123,7 +154,7 @@ export default function OngoingProjectsPage() {
                         <Link href="/contact" className="px-6 py-2.5 bg-gradient-to-r from-[var(--color-gold)] to-[var(--color-gold-light)] text-white text-sm font-semibold rounded-full hover:shadow-lg transition-all duration-300 hover:scale-105 flex items-center gap-2">
                           Enquire Now <ArrowRight size={16} />
                         </Link>
-                        <button className="px-6 py-2.5 border-2 border-[var(--color-gold)] text-[var(--color-gold)] text-sm font-semibold rounded-full hover:bg-[var(--color-gold)] hover:text-white transition-all duration-300">
+                        <button className="px-6 py-2.5 border-2 border-[var(--color-gold)] text-[var(--color-gold)] text-sm font-semibold rounded-full hover:bg-[var(--color-gold)] hover:text-white transition-all duration-300 cursor-pointer">
                           Download Brochure
                         </button>
                       </div>
@@ -137,7 +168,7 @@ export default function OngoingProjectsPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-r from-[var(--color-dark)] to-[var(--color-dark-lighter)]">
+      <section className="py-20 bg-gradient-to-r from-[var(--color-dark)] to-[var(--color-dark-lighter)] relative z-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <FadeIn><h2 className="text-3xl md:text-4xl font-bold text-white font-[family-name:var(--font-playfair)] mb-6">Interested in Our Projects?</h2></FadeIn>
           <FadeIn delay={0.1}><p className="text-gray-400 mb-8 text-lg">Schedule a site visit today and explore your dream home in person.</p></FadeIn>

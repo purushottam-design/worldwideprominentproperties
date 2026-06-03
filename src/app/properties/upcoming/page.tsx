@@ -45,16 +45,37 @@ const upcomingProjects = [
 
 export default function UpcomingPropertiesPage() {
   return (
-    <main className="min-h-screen bg-[var(--color-dark)] pt-24 md:pt-32 pb-20 text-white">
-      {/* Background Graphic */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(circle,var(--color-gold)_0%,transparent_60%)] opacity-[0.03] -translate-y-1/2 translate-x-1/3" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle,var(--color-gold)_0%,transparent_60%)] opacity-[0.03] translate-y-1/3 -translate-x-1/3" />
-      </div>
+    // FIXED: Removed top padding from main tag to align header seamlessly from absolute top zero viewport
+    <main className="min-h-screen bg-[var(--color-dark)] pb-20 text-white">
+      
+      {/* ── HERO BANNER MODIFIED TO TOTAL FULL SCREEN 100vh ── */}
+      <section className="relative h-screen w-full bg-zinc-950 overflow-hidden flex items-center justify-center">
+        
+        {/* HIGH-OPACITY IMAGE BLOCK FOR ARCHITECTURAL VISIBILITY */}
+        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-80 select-none">
+          <Image
+            src="/images/upcomming.png" // Shared global luxury real estate asset look
+            alt="WorldWide Prominent Properties Upcoming Matrix Backdrop"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
 
-      {/* Header Section */}
-      <section className="relative px-6 py-12 lg:py-20 z-10">
-        <div className="max-w-7xl mx-auto text-center">
+        {/* Cinematic Premium Overlay Shielding */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-zinc-950/90 via-zinc-950/30 to-black/40 pointer-events-none" />
+
+        {/* Dynamic Spinning Accents */}
+        <div className="absolute inset-0 overflow-hidden z-10 pointer-events-none">
+          <motion.div 
+            animate={{ rotate: 360 }} 
+            transition={{ duration: 60, repeat: Infinity, ease: "linear" }} 
+            className="absolute -top-32 -right-32 w-96 h-96 rounded-full border border-[var(--color-gold)]/10" 
+          />
+        </div>
+
+        {/* Header Content Array - Perfectly Symmetrical Over 100vh Viewport */}
+        <div className="max-w-7xl mx-auto px-6 relative z-20 text-center mt-16">
           <SectionHeader
             subtitle="Future Landmarks"
             title="Upcoming Projects"
@@ -62,10 +83,28 @@ export default function UpcomingPropertiesPage() {
             light
           />
         </div>
+
+        {/* Infinite Bounce Downward Indicator Layer */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 opacity-60">
+          <span className="text-[10px] tracking-[0.25em] text-zinc-400 uppercase font-black">Explore Future Tech</span>
+          <div className="w-5 h-8 border-2 border-zinc-500 rounded-full flex justify-center p-1">
+            <motion.div 
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              className="w-1.5 h-1.5 bg-[var(--color-gold)] rounded-full"
+            />
+          </div>
+        </div>
       </section>
 
-      {/* Projects List */}
-      <section className="relative px-6 z-10 pb-24">
+      {/* Fixed Layout Background Graphic Element for Lower Page Context */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(circle,var(--color-gold)_0%,transparent_60%)] opacity-[0.03] -translate-y-1/2 translate-x-1/3" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle,var(--color-gold)_0%,transparent_60%)] opacity-[0.03] translate-y-1/3 -translate-x-1/3" />
+      </div>
+
+      {/* Projects List Section */}
+      <section className="relative px-6 z-10 pb-24 pt-24 bg-zinc-950">
         <div className="max-w-7xl mx-auto space-y-24">
           {upcomingProjects.map((project, index) => (
             <FadeIn key={project.id} delay={index * 0.1}>

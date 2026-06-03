@@ -4,26 +4,34 @@ import { motion } from "framer-motion";
 import { Target, Compass, Eye, Shield, Users, Sparkles } from "lucide-react";
 import Image from "next/image";
 
-// Reusing FadeIn from the components (or a local implementation if needed, but going with the provided one from page.tsx style)
+// Reusing FadeIn from the components
 import FadeIn from "../../../components/FadeIn";
 import SectionHeader from "../../../components/SectionHeader";
 
 export default function VisionMissionPage() {
   return (
-    <main className="min-h-screen bg-[var(--color-cream)] pt-24 md:pt-32 pb-20">
-      {/* Hero Section */}
-      <section className="relative px-6 py-20 lg:py-32 overflow-hidden bg-[var(--color-dark)] text-white">
-        <div className="absolute inset-0 z-0">
+    // FIXED: REMOVED pt-24 md:pt-32 so content initializes from the true top of the viewport
+    <main className="min-h-screen bg-[var(--color-cream)] pb-20">
+      
+      {/* ── HERO BANNER SYSTEM (NAVBAR OVERLAPS HERE SEAMLESSLY) ── */}
+      <section className="relative w-full py-44 lg:py-64 bg-zinc-950 text-white flex items-center justify-center">
+        
+        {/* ENHANCED HIGH-OPACITY IMAGE BLOCK FOR ABSOLUTE IMAGE SHARPNESS */}
+        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-80 select-none">
           <Image
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070"
+            src="/images/missionvision.png"
             alt="Corporate Vision"
             fill
-            className="object-cover opacity-20"
+            className="object-cover"
+            priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-dark)] via-[var(--color-dark)]/80 to-[var(--color-dark)]/60" />
         </div>
         
-        <div className="max-w-7xl mx-auto relative z-10 text-center">
+        {/* Soft, Light-Weighted Transparency Gradient Mask */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-black/40 pointer-events-none" />
+        
+        {/* ADJUSTED: Added a bit more internal top padding (mt-16 lg:mt-24) to the content so it pushes safely below the navbar links */}
+        <div className="max-w-7xl mx-auto relative z-20 text-center mt-16 lg:mt-24">
           <FadeIn>
             <div className="inline-flex items-center gap-3 glass-dark border-[var(--color-gold)]/30 px-6 py-2 rounded-full mb-8 shadow-[0_0_20px_rgba(212,175,55,0.2)]">
               <Compass className="text-[var(--color-gold)]" size={16} />
@@ -32,13 +40,13 @@ export default function VisionMissionPage() {
           </FadeIn>
           
           <FadeIn delay={0.1}>
-            <h1 className="text-5xl md:text-7xl font-bold heading-premium mb-8 drop-shadow-2xl">
+            <h1 className="text-5xl md:text-7xl font-bold heading-premium mb-8 drop-shadow-[0_4px_12px_rgba(0,0,0,0.85)]">
               Vision & <span className="gradient-text italic">Mission</span>
             </h1>
           </FadeIn>
           
           <FadeIn delay={0.2}>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
+            <p className="text-white max-w-3xl mx-auto text-xl md:text-2xl font-bold tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,1)] leading-relaxed">
               To redefine luxury living through architectural brilliance, unyielding integrity, and a profound understanding of our clients&apos; highest aspirations.
             </p>
           </FadeIn>

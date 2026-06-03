@@ -30,13 +30,13 @@ export default function GalleryPage() {
 
   return (
     <>
-      {/* ── HERO HEADER WITH OPTIMIZED BACKGROUND IMAGE ── */}
-      <section className="relative py-36 lg:py-48 bg-zinc-950 overflow-hidden flex items-center justify-center">
+      {/* ── HERO BANNER MODIFIED TO TOTAL FULL SCREEN 100vh ── */}
+      <section className="relative h-screen w-full bg-zinc-950 overflow-hidden flex items-center justify-center">
         
-        {/* FULL COVER HIGH-END ARCHITECTURE GRAPHIC BACKDROP */}
-        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-30 select-none">
+        {/* FULL COVER HIGH-END ARCHITECTURE GRAPHIC BACKDROP WITH HIGH CLARITY */}
+        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-80 select-none">
           <Image
-            src="/images/gallery.png" // Premium residential layout vector
+            src="/images/gallery.png" 
             alt="WorldWide Prominent Properties Project Backdrop"
             fill
             className="object-cover"
@@ -44,24 +44,36 @@ export default function GalleryPage() {
           />
         </div>
 
-        {/* Multi-layered cinematic overlay shielding for clean text readability */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-black/40 pointer-events-none" />
-        <div className="absolute inset-0 z-10 bg-radial-gradient(circle at center, transparent 20%, #09090b 95%) opacity-60 pointer-events-none" />
+        {/* Multi-layered cinematic overlay shielding (Kala rang hataya gaya hai taaki image crystal clear show ho) */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-zinc-950/90 via-zinc-950/20 to-black/30 pointer-events-none" />
+        <div className="absolute inset-0 z-10 bg-radial-gradient(circle at center, transparent 30%, #09090b 95%) opacity-40 pointer-events-none" />
 
         {/* Fine geometric accents */}
         <div className="absolute inset-0 overflow-hidden z-10 pointer-events-none">
           <motion.div animate={{ rotate: 360 }} transition={{ duration: 60, repeat: Infinity, ease: "linear" }} className="absolute -top-32 -right-32 w-96 h-96 rounded-full border border-[var(--color-gold)]/10" />
         </div>
 
-        {/* Header Content Array */}
-        <div className="max-w-7xl mx-auto px-6 relative z-20 text-center">
-          <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="inline-block px-4 py-1.5 glass rounded-full text-[var(--color-gold)] text-xs font-bold mb-6 tracking-[0.2em] uppercase">✦ SHOWCASE MODULE</motion.span>
-          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-5xl md:text-6xl lg:text-7xl font-black text-white uppercase tracking-tight mb-4">
+        {/* Header Content Array - Centered Over 100vh Viewport with Drop Shadows */}
+        <div className="max-w-7xl mx-auto px-6 relative z-20 text-center mt-12">
+          <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="inline-block px-4 py-1.5 glass rounded-full text-[var(--color-gold)] text-xs font-bold mb-6 tracking-[0.2em] uppercase shadow-lg">✦ SHOWCASE MODULE</motion.span>
+          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-5xl md:text-6xl lg:text-7xl font-black text-white uppercase tracking-tight mb-4 drop-shadow-[0_4px_12px_rgba(0,0,0,0.85)]">
             Our <span className="gradient-text font-[family-name:var(--font-playfair)] lowercase italic font-medium">Gallery</span>
           </motion.h1>
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="text-zinc-400 max-w-xl mx-auto text-sm md:text-base tracking-wide font-medium leading-relaxed">
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="text-white max-w-xl mx-auto text-base md:text-lg font-bold tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,1)] leading-relaxed">
             Explore our premium portfolios, meticulous interior layouts, and landmark construction blueprints.
           </motion.p>
+        </div>
+
+        {/* Infinite Bounce Downward Indicator Layer */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 opacity-60">
+          <span className="text-[10px] tracking-[0.25em] text-zinc-400 uppercase font-black">View Portfolio</span>
+          <div className="w-5 h-8 border-2 border-zinc-500 rounded-full flex justify-center p-1">
+            <motion.div 
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              className="w-1.5 h-1.5 bg-[var(--color-gold)] rounded-full"
+            />
+          </div>
         </div>
       </section>
 

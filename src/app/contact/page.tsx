@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle2 } from "lucide-react";
+import Image from "next/image";
 
 function FadeIn({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef(null);
@@ -17,7 +18,7 @@ function FadeIn({ children, delay = 0, className = "" }: { children: React.React
 const contactInfo = [
   { icon: Phone, label: "Phone", values: ["+91 9031630070", "+91 9031630071", "+91 9031630072"] },
   { icon: Mail, label: "Email", values: ["info@worldwideprominentproperties.com"] },
-  { icon: MapPin, label: "Address", values: ["Thakur Parsad Community Hall, Near Axis Bank ATM, B-10 Kidwaipuri, Patna, Bihar 800001"] },
+  { icon: MapPin, label: "Address", values: ["Thakur Prasad Community Hall, Near Axis Bank ATM, B-10 Kidwaipuri, Patna, Bihar 800001"] },
   { icon: Clock, label: "Working Hours", values: ["Mon - Sat: 10:00 AM - 7:00 PM", "Sunday: By Appointment"] },
 ];
 
@@ -33,22 +34,55 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative py-32 bg-gradient-to-br from-[var(--color-dark)] via-[var(--color-dark-light)] to-[var(--color-dark-lighter)] overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
+      {/* ── HERO BANNER MODIFIED TO TOTAL FULL SCREEN 100vh WITH ZERO GAP ── */}
+      <section className="relative h-screen w-full bg-zinc-950 overflow-hidden flex items-center justify-center">
+        
+        {/* HIGH-OPACITY IMAGE LAYER FOR ABSOLUTE VISIBILITY */}
+        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-75 select-none">
+          <Image
+            src="/images/contact.png" 
+            alt="WorldWide Prominent Properties Office Frame"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+
+        {/* Soft, Transparent Gradient Mask */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-zinc-950/90 via-zinc-950/20 to-black/30 pointer-events-none" />
+
+        <div className="absolute inset-0 overflow-hidden z-10 pointer-events-none">
           <motion.div animate={{ rotate: 360 }} transition={{ duration: 60, repeat: Infinity, ease: "linear" }} className="absolute -top-32 -right-32 w-96 h-96 rounded-full border border-[var(--color-gold)]/10" />
         </div>
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-          <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="inline-block px-4 py-1.5 glass rounded-full text-[var(--color-gold)] text-sm font-semibold mb-6 tracking-wider">✦ REACH OUT</motion.span>
-          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-4xl md:text-5xl lg:text-6xl font-bold text-white font-[family-name:var(--font-playfair)] mb-4">
+
+        {/* Header Content Array - Added mt-16 to balance spacing beneath the absolute floating navbar */}
+        <div className="max-w-7xl mx-auto px-6 relative z-20 text-center mt-16">
+          <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="inline-block px-4 py-1.5 glass rounded-full text-[var(--color-gold)] text-xs font-bold mb-6 tracking-[0.2em] uppercase shadow-lg">
+            ✦ REACH OUT
+          </motion.span>
+          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-5xl md:text-6xl lg:text-7xl font-bold text-white font-[family-name:var(--font-playfair)] tracking-tight mb-4 drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
             Contact <span className="gradient-text">Us</span>
           </motion.h1>
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="text-gray-400 max-w-2xl mx-auto text-lg">We&apos;d love to hear from you. Get in touch today!</motion.p>
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="text-white max-w-2xl mx-auto text-base md:text-xl font-bold tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,1)]">
+            We'd love to hear from you. Get in touch today!
+          </motion.p>
+        </div>
+
+        {/* Infinite Bounce Downward Indicator Layer */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 opacity-60">
+          <span className="text-[10px] tracking-[0.25em] text-zinc-400 uppercase font-black">Get In Touch</span>
+          <div className="w-5 h-8 border-2 border-zinc-500 rounded-full flex justify-center p-1">
+            <motion.div 
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              className="w-1.5 h-1.5 bg-[var(--color-gold)] rounded-full"
+            />
+          </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white relative z-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-5 gap-12">
             {/* Contact Info */}
@@ -95,7 +129,7 @@ export default function ContactPage() {
               <FadeIn>
                 <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 lg:p-10">
                   <h2 className="text-2xl font-bold text-[var(--color-dark)] font-[family-name:var(--font-playfair)] mb-2">Send Us a Message</h2>
-                  <p className="text-gray-500 text-sm mb-8">Fill out the form below and we&apos;ll get back to you shortly.</p>
+                  <p className="text-gray-500 text-sm mb-8">Fill out the form below and we'll get back to you shortly.</p>
 
                   {submitted ? (
                     <motion.div
@@ -105,7 +139,7 @@ export default function ContactPage() {
                     >
                       <CheckCircle2 size={64} className="mx-auto text-green-500 mb-4" />
                       <h3 className="text-xl font-bold text-[var(--color-dark)] mb-2">Thank You!</h3>
-                      <p className="text-gray-600">Your message has been sent successfully. We&apos;ll get back to you soon.</p>
+                      <p className="text-gray-600">Your message has been sent successfully. We'll get back to you soon.</p>
                     </motion.div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-5">
@@ -175,7 +209,7 @@ export default function ContactPage() {
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         type="submit"
-                        className="w-full py-3.5 bg-gradient-to-r from-[var(--color-gold)] to-[var(--color-gold-light)] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[var(--color-gold)]/25 transition-all duration-300 flex items-center justify-center gap-2"
+                        className="w-full py-3.5 bg-gradient-to-r from-[var(--color-gold)] to-[var(--color-gold-light)] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[var(--color-gold)]/25 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
                       >
                         <Send size={18} />
                         Send Message
