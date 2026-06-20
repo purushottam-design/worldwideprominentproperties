@@ -170,8 +170,8 @@ export default function Footer() {
                   <MapPin size={18} className="text-[var(--color-gold)]" />
                 </div>
                 <p className="text-gray-400 text-sm leading-relaxed font-light mt-1">
-                  Thakur Parsad Community Hall, Near Axis Bank ATM, B-10
-                  Kidwaipuri, Patna, Bihar 800001
+                101 City Plaza, Kidwaipuri,
+                Patna - 800001, Bihar, India
                 </p>
               </div>
               
