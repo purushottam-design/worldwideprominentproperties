@@ -18,7 +18,7 @@ function FadeIn({ children, delay = 0, className = "" }: { children: React.React
 const contactInfo = [
   { icon: Phone, label: "Phone", values: ["+91 9031630070", "+91 9031630071", "+91 9031630072"] },
   { icon: Mail, label: "Email", values: ["info@worldwideprominentproperties.com"] },
-  { icon: MapPin, label: "Address", values: ["Thakur Prasad Community Hall, Near Axis Bank ATM, B-10 Kidwaipuri, Patna, Bihar 800001"] },
+  { icon: MapPin, label: "Address", values: ["101 City Plaza, Kidwaipuri, Patna - 800001, Bihar, India"] },
   { icon: Clock, label: "Working Hours", values: ["Mon - Sat: 10:00 AM - 7:00 PM", "Sunday: By Appointment"] },
 ];
 
