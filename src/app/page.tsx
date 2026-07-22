@@ -31,7 +31,6 @@ import {
 
 import FadeIn from "@/components/FadeIn";
 
-
 /* ─── Section Header ─── */
 function SectionHeader({
   subtitle,
@@ -85,24 +84,24 @@ const heroSlides = [
     highlight: "For Sale",
     features: ["3 Bed Rooms", "1 Living Room", "Swimming Pool"],
     icons: [BedDouble, Sofa, Waves],
-    // High-end architecture image synced with Slide 1
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80",
+    image:
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80",
   },
   {
     title: "LUXURY LIVING",
     highlight: "Apartments",
     features: ["Premium Finish", "Gated Community", "Modern Amenities"],
     icons: [Gem, Shield, Sparkles],
-    // Ultra-premium penthouse image synced with Slide 2
-    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1920&q=80",
+    image:
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1920&q=80",
   },
   {
     title: "DREAM SPACES",
     highlight: "Awaits You",
     features: ["Prime Location", "World-Class Design", "On-Time Delivery"],
     icons: [Target, Star, Clock],
-    // Cinematic residential tower image synced with Slide 3
-    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1920&q=80",
+    image:
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1920&q=80",
   },
 ];
 
@@ -120,15 +119,14 @@ function HeroSection() {
   const slide = heroSlides[current];
 
   return (
-    <section className="relative min-h-[95vh] flex items-center overflow-hidden bg-black">
-      
-      {/* BACKGROUND IMAGE SLIDER MATRICES (FULLY SYNCED) */}
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-black">
+      {/* CLEAR BACKGROUND IMAGE SLIDER WITH BALANCED OVERLAY */}
       <AnimatePresence mode="popLayout">
         <motion.div
           key={current}
-          initial={{ opacity: 0, scale: 1.08 }}
-          animate={{ opacity: 0.45, scale: 1 }} // 0.45 opacity guarantees text readability over image
-          exit={{ opacity: 0, scale: 0.97 }}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 0.65, scale: 1 }} // Enhanced opacity for crisp image clarity
+          exit={{ opacity: 0, scale: 0.98 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           className="absolute inset-0 w-full h-full"
         >
@@ -142,12 +140,12 @@ function HeroSection() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Cinematic Vignette Gradients Layer */}
-      <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-[#050505] via-transparent to-black/50" />
-      <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-[#050505]/90 via-[#050505]/40 to-transparent" />
+      {/* Balanced Vignette Layer - Soft gradient for readability without washing out the photo */}
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-[#050505] via-black/40 to-black/60" />
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-[#050505]/80 via-black/30 to-transparent" />
 
-      {/* Decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Decorative Rotating Rings */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
@@ -158,53 +156,36 @@ function HeroSection() {
           transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
           className="absolute -bottom-48 -left-48 w-[600px] h-[600px] rounded-full border border-[var(--color-gold)]/5"
         />
-        {/* Floating particles */}
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-[var(--color-gold)]/20 rounded-full"
-            style={{
-              top: `${20 + i * 15}%`,
-              left: `${10 + i * 16}%`,
-            }}
-            animate={{
-              y: [-20, 20, -20],
-              opacity: [0.2, 0.6, 0.2],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              repeatType: "loop",
-              ease: "linear",
-              delay: 0.5
-            }}
-          />
-        ))}
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 w-full">
+      {/* Hero Content Layer - pt-28 md:pt-36 lg:pt-40 guarantees Navbar offset */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-28 md:pt-36 lg:pt-40 pb-16 w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Content */}
+          {/* Main Text Content */}
           <div>
             <AnimatePresence mode="wait">
               <motion.div
                 key={current}
-                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                initial={{ opacity: 0, y: 30, scale: 0.98 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -30, scale: 0.95 }}
+                exit={{ opacity: 0, y: -20, scale: 0.98 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               >
-                <span className="inline-block px-4 py-1.5 glass rounded-full text-[var(--color-gold)] text-xs font-bold mb-6 tracking-[0.2em] uppercase">
-                  ✦ Welcome to World Wide Prominent Properties
-                </span>
-                <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white heading-premium mb-2 drop-shadow-2xl">
+                {/* IMPROVED RESPONSIVE BADGE (NO NAVBAR OVERLAP) */}
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 glass rounded-full border border-[var(--color-gold)]/30 backdrop-blur-md mb-6 max-w-full">
+                  <span className="text-[var(--color-gold)] text-[10px] sm:text-xs font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase truncate">
+                    ✦ Welcome to World Wide Prominent Properties
+                  </span>
+                </div>
+
+                <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white heading-premium mb-2 drop-shadow-2xl">
                   {slide.title}
                 </h1>
-                <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold gradient-text heading-premium mb-8 drop-shadow-xl">
+                <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold gradient-text heading-premium mb-8 drop-shadow-xl">
                   {slide.highlight}
                 </h2>
 
-                <div className="flex flex-wrap gap-4 mb-12">
+                <div className="flex flex-wrap gap-3 sm:gap-4 mb-10">
                   {slide.features.map((feat, i) => {
                     const Icon = slide.icons[i];
                     return (
@@ -212,28 +193,33 @@ function HeroSection() {
                         key={feat}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5 + i * 0.15, ease: "easeOut" }}
-                        className="flex items-center gap-2 glass px-5 py-2.5 rounded-full border border-white/10 hover:border-[var(--color-gold)]/50 transition-colors"
+                        transition={{ delay: 0.4 + i * 0.1, ease: "easeOut" }}
+                        className="flex items-center gap-2 glass px-4 py-2 sm:px-5 sm:py-2.5 rounded-full border border-white/10 hover:border-[var(--color-gold)]/50 transition-colors backdrop-blur-md"
                       >
-                        <Icon size={18} className="text-[var(--color-gold)]" />
-                        <span className="text-gray-200 text-sm font-medium tracking-wide">{feat}</span>
+                        <Icon size={16} className="text-[var(--color-gold)]" />
+                        <span className="text-gray-200 text-xs sm:text-sm font-medium tracking-wide">
+                          {feat}
+                        </span>
                       </motion.div>
                     );
                   })}
                 </div>
 
-                <div className="flex flex-wrap gap-6">
+                <div className="flex flex-wrap gap-4 sm:gap-6">
                   <Link
                     href="/properties/ongoing"
-                    className="group relative px-8 py-4 bg-gradient-to-r from-[var(--color-gold-dark)] via-[var(--color-gold)] to-[var(--color-gold-light)] text-[var(--color-dark)] font-bold rounded-full overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.3)] hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] transition-all duration-500 hover:scale-105 flex items-center gap-3 tracking-wide"
+                    className="group relative px-6 py-3.5 sm:px-8 sm:py-4 bg-gradient-to-r from-[var(--color-gold-dark)] via-[var(--color-gold)] to-[var(--color-gold-light)] text-[var(--color-dark)] font-bold rounded-full overflow-hidden shadow-[0_0_30px_rgba(212,175,55,0.3)] hover:shadow-[0_0_50px_rgba(212,175,55,0.5)] transition-all duration-500 hover:scale-105 flex items-center gap-3 tracking-wide text-sm sm:text-base"
                   >
                     <span className="relative z-10">Explore Properties</span>
-                    <ArrowRight size={20} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight
+                      size={18}
+                      className="relative z-10 group-hover:translate-x-1 transition-transform"
+                    />
                     <div className="absolute inset-0 bg-white/20 translate-y-[100%] group-hover:translate-y-[0%] transition-transform duration-500 ease-out" />
                   </Link>
                   <Link
                     href="/contact"
-                    className="group px-8 py-4 glass text-white font-bold rounded-full hover:bg-white/10 border border-white/10 hover:border-white/30 transition-all duration-500 flex items-center gap-3 tracking-wide"
+                    className="group px-6 py-3.5 sm:px-8 sm:py-4 glass text-white font-bold rounded-full hover:bg-white/10 border border-white/20 hover:border-white/40 transition-all duration-500 flex items-center gap-3 tracking-wide text-sm sm:text-base backdrop-blur-md"
                   >
                     <span>Contact Us</span>
                     <div className="w-2 h-2 rounded-full bg-[var(--color-gold)] group-hover:scale-150 transition-transform" />
@@ -243,92 +229,40 @@ function HeroSection() {
             </AnimatePresence>
           </div>
 
-          {/* Decorative Experience Card – synced with slide change */}
+          {/* Decorative Right Graphic */}
           <div className="hidden lg:flex justify-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current}
-                initial={{ opacity: 0, scale: 0.8, y: 30, rotate: -8 }}
-                animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
-                exit={{ opacity: 0, scale: 0.85, y: -20, rotate: 8 }}
+                initial={{ opacity: 0, scale: 0.85, rotate: -5 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                exit={{ opacity: 0, scale: 0.85, rotate: 5 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 className="relative"
               >
-                {/* Soft outer glow that reacts on every change */}
-                <motion.div
-                  key={`glow-${current}`}
-                  initial={{ opacity: 0, scale: 0.7 }}
-                  animate={{ opacity: 0.45, scale: 1 }}
-                  exit={{ opacity: 0, scale: 1.1 }}
-                  transition={{ duration: 0.9, ease: "easeOut" }}
-                  className="absolute inset-0 flex items-center justify-center pointer-events-none"
-                >
-                  <div className="w-[22rem] h-[22rem] rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.55)_0%,transparent_65%)] blur-3xl" />
-                </motion.div>
-
-                <div className="relative w-80 h-80 rounded-full glass border-2 border-[var(--color-gold)]/30 flex items-center justify-center animate-float shadow-[0_0_40px_rgba(212,175,55,0.18)]">
-                  <div className="w-64 h-64 rounded-full bg-gradient-to-br from-[var(--color-gold)]/25 via-[var(--color-gold)]/10 to-[var(--color-gold)]/5 flex items-center justify-center">
+                <div className="relative w-80 h-80 rounded-full glass border-2 border-[var(--color-gold)]/30 flex items-center justify-center shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+                  <div className="w-64 h-64 rounded-full bg-gradient-to-br from-[var(--color-gold)]/20 via-black/40 to-black/60 flex items-center justify-center backdrop-blur-md">
                     <div className="text-center space-y-2">
-                      <motion.div
-                        key={`icon-${current}`}
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        exit={{ scale: 0.8, opacity: 0 }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                      >
-                        <Building2
-                          size={72}
-                          className="mx-auto text-[var(--color-gold)] drop-shadow-lg"
-                        />
-                      </motion.div>
+                      <Building2
+                        size={64}
+                        className="mx-auto text-[var(--color-gold)] drop-shadow-lg"
+                      />
                       <p className="text-white text-3xl font-bold font-[family-name:var(--font-playfair)] tracking-tight">
                         21<span className="text-[var(--color-gold)]">+</span> Years
                       </p>
-                      <p className="text-gray-300 text-sm uppercase tracking-[0.25em]">
+                      <p className="text-gray-300 text-xs uppercase tracking-[0.2em]">
                         Of Excellence
-                      </p>
-                      {/* Current slide label */}
-                      <p className="mt-2 text-xs text-gray-400 tracking-[0.2em] uppercase">
-                        {slide.title} · {slide.highlight}
                       </p>
                     </div>
                   </div>
                 </div>
-
-                {/* Satellite circles */}
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{
-                    duration: 18,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                  className="absolute inset-0"
-                >
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-[var(--color-gold)] flex items-center justify-center shadow-lg">
-                    <Trophy size={20} className="text-white" />
-                  </div>
-                </motion.div>
-                <motion.div
-                  animate={{ rotate: -360 }}
-                  transition={{
-                    duration: 22,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                  className="absolute inset-0"
-                >
-                  <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-[var(--color-dark-lighter)] flex items-center justify-center shadow-lg border border-[var(--color-gold)]/40">
-                    <Star size={20} className="text-[var(--color-gold)]" />
-                  </div>
-                </motion.div>
               </motion.div>
             </AnimatePresence>
           </div>
         </div>
 
         {/* Slide indicators */}
-        <div className="flex justify-center gap-3 mt-12">
+        <div className="flex justify-center gap-3 mt-12 sm:mt-16">
           {heroSlides.map((_, i) => (
             <button
               key={i}
@@ -352,10 +286,9 @@ function AboutSection() {
     <section className="py-32 bg-[var(--color-cream)] relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-[var(--color-gold)]/5 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-[var(--color-gold)]/5 to-transparent rounded-full blur-3xl translate-y-1/2 -translate-x-1/3" />
-      
+
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
-          {/* Left : visual */}
           <FadeIn direction="left">
             <div className="relative">
               <div className="w-full aspect-square max-w-lg mx-auto rounded-full bg-white/50 border border-white/60 p-4 shadow-2xl backdrop-blur-sm relative">
@@ -378,15 +311,16 @@ function AboutSection() {
                     </p>
                   </div>
                 </div>
-                
-                {/* Floating stats badges */}
+
                 <motion.div
                   animate={{ y: [-15, 15, -15] }}
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                   className="absolute top-12 -left-8 bg-white/90 backdrop-blur-md rounded-2xl p-5 shadow-xl border border-white"
                 >
                   <p className="text-3xl font-bold gradient-text">500+</p>
-                  <p className="text-xs text-gray-500 font-bold uppercase tracking-wider mt-1">Families</p>
+                  <p className="text-xs text-gray-500 font-bold uppercase tracking-wider mt-1">
+                    Families
+                  </p>
                 </motion.div>
 
                 <motion.div
@@ -402,7 +336,6 @@ function AboutSection() {
             </div>
           </FadeIn>
 
-          {/* Right : text */}
           <div className="lg:pl-10">
             <FadeIn>
               <div className="flex items-center gap-4 mb-6">
@@ -414,7 +347,7 @@ function AboutSection() {
             </FadeIn>
             <FadeIn delay={0.1}>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-dark)] heading-premium mb-8 leading-tight">
-                Crafting Legacies, <br/>
+                Crafting Legacies, <br />
                 <span className="gradient-text italic">Redefining Luxury.</span>
               </h2>
             </FadeIn>
@@ -486,7 +419,6 @@ function CoreValuesSection() {
                 className="bg-[var(--color-cream)] rounded-3xl p-10 hover:shadow-[0_30px_60px_rgba(212,175,55,0.1)] transition-all duration-500 border border-transparent hover:border-[var(--color-gold)]/20 group h-full relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--color-gold)]/5 rounded-bl-full -z-0 transition-transform duration-500 group-hover:scale-150" />
-                
                 <div className="relative z-10">
                   <div className="w-16 h-16 rounded-2xl bg-white shadow-lg flex items-center justify-center mb-8 group-hover:bg-gradient-to-br group-hover:from-[var(--color-gold)] group-hover:to-[var(--color-gold-light)] transition-colors duration-500">
                     <v.icon size={30} className="text-[var(--color-gold)] group-hover:text-white transition-colors duration-500" />
@@ -494,9 +426,7 @@ function CoreValuesSection() {
                   <h3 className="text-xl font-bold text-[var(--color-dark)] mb-4 heading-premium">
                     {v.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {v.desc}
-                  </p>
+                  <p className="text-gray-600 leading-relaxed">{v.desc}</p>
                 </div>
               </motion.div>
             </FadeIn>
@@ -553,7 +483,6 @@ function PropertiesSection() {
                 whileHover={{ y: -12 }}
                 className="group glass-dark rounded-3xl overflow-hidden hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] transition-all duration-500 border border-white/5"
               >
-                {/* Property Image */}
                 <div className="h-64 relative overflow-hidden">
                   <Image
                     src={p.image}
@@ -563,8 +492,6 @@ function PropertiesSection() {
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-dark)] via-transparent to-transparent" />
-                  
-                  {/* Premium Badge */}
                   <div className="absolute top-4 right-4 backdrop-blur-md bg-white/10 border border-white/20 px-4 py-1.5 rounded-full flex items-center gap-2">
                     <div className={`w-2 h-2 rounded-full ${p.status === "Ongoing" ? "bg-green-400 animate-pulse" : "bg-[var(--color-gold)]"}`} />
                     <span className="text-white text-xs font-bold tracking-wider uppercase">{p.status}</span>
@@ -585,7 +512,6 @@ function PropertiesSection() {
                   </div>
                   
                   <div className="h-[1px] w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent mb-4" />
-                  
                   <p className="text-gray-300 font-medium tracking-wide mb-6">{p.type}</p>
                   
                   <div className="flex items-center justify-between">
@@ -629,10 +555,6 @@ const whyUs = [
 function WhyChooseUsSection() {
   return (
     <section className="py-32 bg-[var(--color-dark-light)] text-white relative overflow-hidden">
-      <div className="absolute inset-0 overflow-hidden opacity-50">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-[radial-gradient(circle,var(--color-gold)_0%,transparent_60%)] opacity-5 blend-screen" />
-      </div>
-      
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <SectionHeader
           subtitle="The World Wide Prominent Properties Difference"
@@ -643,13 +565,9 @@ function WhyChooseUsSection() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
           {whyUs.map((item, i) => (
             <FadeIn key={item.label} delay={i * 0.1}>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="text-center relative group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-gold)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl blur-xl" />
+              <motion.div whileHover={{ scale: 1.05 }} className="text-center relative group">
                 <div className="relative z-10 p-6">
-                  <div className="w-20 h-20 rounded-full border border-[var(--color-gold)]/30 flex items-center justify-center mx-auto mb-6 group-hover:border-[var(--color-gold)] transition-colors duration-500 bg-[var(--color-dark)] text-[var(--color-gold)] shadow-[0_0_30px_rgba(212,175,55,0.1)] group-hover:shadow-[0_0_40px_rgba(212,175,55,0.3)]">
+                  <div className="w-20 h-20 rounded-full border border-[var(--color-gold)]/30 flex items-center justify-center mx-auto mb-6 group-hover:border-[var(--color-gold)] transition-colors duration-500 bg-[var(--color-dark)] text-[var(--color-gold)] shadow-[0_0_30px_rgba(212,175,55,0.1)]">
                     <item.icon size={32} />
                   </div>
                   <h3 className="text-5xl lg:text-6xl font-bold gradient-text heading-premium mb-3 tracking-tighter drop-shadow-lg">
@@ -691,7 +609,6 @@ const tools = [
 function ToolsSection() {
   return (
     <section className="py-32 bg-[var(--color-cream)] relative overflow-hidden">
-      <div className="absolute -left-64 top-1/4 w-[500px] h-[500px] bg-white rounded-full blur-[100px] opacity-60" />
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <SectionHeader
           subtitle="Ecosystem"
@@ -706,8 +623,6 @@ function ToolsSection() {
                   whileHover={{ y: -10 }}
                   className="bg-white/80 backdrop-blur-xl rounded-3xl p-10 shadow-[0_20px_40px_rgba(0,0,0,0.03)] border border-white group cursor-pointer h-full relative overflow-hidden"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
                   <div className="relative z-10">
                     <div className="w-20 h-20 rounded-2xl bg-[var(--color-cream-dark)] border border-white flex items-center justify-center mb-8 group-hover:bg-[var(--color-dark)] transition-colors duration-500 shadow-inner">
                       <t.icon
@@ -721,7 +636,6 @@ function ToolsSection() {
                     <p className="text-gray-600 leading-relaxed group-hover:text-[var(--color-dark-lighter)] transition-colors">
                       {t.desc}
                     </p>
-                    
                     <div className="mt-8 flex items-center gap-3 text-[var(--color-gold)] font-bold tracking-wide text-sm opacity-0 -translate-x-4 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500">
                       ACCESS RESOURCE <ArrowRight size={18} />
                     </div>
@@ -761,9 +675,6 @@ const testimonials = [
 function TestimonialsSection() {
   return (
     <section className="py-32 bg-white relative overflow-hidden">
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[300px] text-[var(--color-cream-dark)] opacity-30 font-serif leading-none select-none pointer-events-none">
-        &rdquo;
-      </div>
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <SectionHeader
           subtitle="Testimonials"
@@ -777,9 +688,6 @@ function TestimonialsSection() {
                 whileHover={{ y: -10 }}
                 className="bg-[var(--color-cream)] rounded-3xl p-10 shadow-lg border border-transparent hover:border-[var(--color-gold)]/20 transition-all duration-500 relative h-full group"
               >
-                <div className="absolute -top-6 left-10 w-12 h-12 bg-gradient-to-br from-[var(--color-gold)] to-[var(--color-gold-dark)] rounded-2xl rotate-12 flex items-center justify-center shadow-xl group-hover:rotate-0 transition-transform duration-500">
-                  <span className="text-white text-3xl font-serif leading-none pt-2">&ldquo;</span>
-                </div>
                 <div className="flex gap-1 mb-6 mt-4">
                   {[...Array(t.rating)].map((_, j) => (
                     <Star
@@ -792,9 +700,7 @@ function TestimonialsSection() {
                 <p className="text-gray-600 text-lg leading-relaxed mb-8 font-serif italic text-justify">
                   {t.text}
                 </p>
-                
                 <div className="h-[1px] w-full bg-gradient-to-r from-gray-200 to-transparent mb-6" />
-                
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 rounded-full bg-[var(--color-dark)] flex items-center justify-center text-[var(--color-gold)] font-bold text-xl shadow-inner border-2 border-[var(--color-gold)]/20 group-hover:border-[var(--color-gold)] transition-colors">
                     {t.name[0]}
@@ -909,30 +815,8 @@ function FAQSection() {
 function CTASection() {
   return (
     <section className="py-32 bg-[var(--color-dark)] relative overflow-hidden">
-      {/* Dynamic Background Elements */}
       <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=60')] bg-cover bg-center opacity-20" />
       <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-dark)] via-[var(--color-dark)]/80 to-[var(--color-dark)]" />
-      
-      <div className="absolute inset-0 opacity-30 mix-blend-color-dodge">
-        {[...Array(3)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full bg-[var(--color-gold)] blur-[80px]"
-            style={{
-              width: `${200 + i * 100}px`,
-              height: `${200 + i * 100}px`,
-              top: `${20 + i * 20}%`,
-              left: `${10 + i * 30}%`,
-            }}
-            animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
-            transition={{
-              duration: 8 + i * 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-        ))}
-      </div>
 
       <div className="max-w-4xl mx-auto px-6 text-center relative z-20">
         <FadeIn>
